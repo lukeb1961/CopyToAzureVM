@@ -255,14 +255,14 @@ $PSicon = [Drawing.Icon]::ExtractAssociatedIcon((Get-Command -Name powershell).P
 
 function Invoke-FileBrowser
  {
-  param([string]$Title, [string]$Directory, [string]$Filter=”All Files (*.*)|*.*”)
+  param([string]$Title, [string]$Directory, [string]$Filter='All Files (*.*)|*.*')
 
     $FileBrowser = New-Object System.Windows.Forms.OpenFileDialog
     $FileBrowser.InitialDirectory = $Directory
     $FileBrowser.Filter = $Filter
     $FileBrowser.Title = $Title
     $Show = $FileBrowser.ShowDialog()
-    if ($Show -eq “OK”) { return $FileBrowser.FileName }
+    if ($Show -eq 'OK') { return $FileBrowser.FileName }
 }
 
 function Select-ArrayItem  
@@ -356,7 +356,7 @@ if (Check-AzurePowerShellModule "0.8.15") {
 #endregion
 
 #region doThecopy
-      $source = Invoke-FileBrowser -Title “Local file to copy”
+      $source = Invoke-FileBrowser -Title 'Local file to copy'
       Write-Output "From Local : $source"
       $destination = Read-Host 'Enter destination filepath'
       if (-NOT (Test-Path -IsValid $destination)) {write-error 'Invalid filepath syntax.'}
