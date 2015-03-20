@@ -359,7 +359,8 @@ if (Check-AzurePowerShellModule "0.8.15") {
       $source = Invoke-FileBrowser -Title 'Local file to copy'
       Write-Output "From Local : $source"
       $destination = Read-Host 'Enter destination filepath'
-      if (-NOT (Test-Path -IsValid $destination)) {write-error 'Invalid filepath syntax.'}
+# BUG - this "syntax check" fails if the drive does not exist locally!
+#     if (-NOT (Test-Path -IsValid $destination)) {write-error 'Invalid filepath syntax.'}
       Write-Output "Copying to '$($TARGET.Name)':   $destination"
       Send-FileToAzure -Source $source -Destination $destination -Session $AzureSession
 #endregion
